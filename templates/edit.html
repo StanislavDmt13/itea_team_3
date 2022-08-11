@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <center>
+        <h1> Edit Profile</h1>
+        <form action="" method="post" >
+        {% csrf_token %}
+            {{ form.as_p }}
+        <input type="submit" value="Save" class="btn btn-primary btn-sucsess">
+    </form>
+    </center>
+
+{% endblock %}
+
+
+{% block avatar %}
+                <form method="post" action="avatar/" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ avatar_form.avatar }}
+                    <input type="submit" value="Save" class="btn btn-primary btn-sucsess">
+
+                </form>
+
+{% endblock %}
