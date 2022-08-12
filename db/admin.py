@@ -1,10 +1,48 @@
 from django.contrib import admin
-from .models import Task
+from . import models
+from django.contrib.auth.admin import UserAdmin as BaseAdmin
+from django.utils.translation import gettext as _
 
 
-class TaskAdmin(admin.ModelAdmin):
+@admin.register(models.User)
+class UserAdmin(BaseAdmin):
+    ordering = ['id']
+    list_display = ['email', 'username']
 
-    list_display = ['title', 'author']
 
+    fieldsets = (
+            (None, {'fields': ('email', 'password')}),
+        (
+            _('Personal Info'),
 
-admin.site.register(Task, TaskAdmin)
+                    {'fields': (
+                        'avatar', 'username',
+                        'first_name', 'last_name',
+                        'birthday', 'phone',
+                        'weight', 'height', 'country', 'city',)}),
+		(
+			_('Permissions'),
+
+					{'fields': (
+						'is_active',
+		    			'is_staff',
+		    			'is_superuser',
+		    			'groups',
+		    			'user_permissions')
+            }
+        ),
+        (
+			_('Important dates'),
+
+					{'fields': (
+						'last_login',
+						 'created_at')
+					}
+		),
+		)
+    add_fieldsets = (
+		(None, {'classes': ('wide',),
+				'fields': ('email', 'username', 'password1', 'password2')}),
+    	)
+
+    readonly_fields = ('created_at',)
