@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+<form method="post">
+  <center>
+    <h2>Enter your data</h2>
+  {% csrf_token %}
+  <div class="mb-3 col-sm-4">
+    <input type="text" class="form-control" name="Email" placeholder="Email">
+  </div>
+  <div class="mb-3 col-sm-4">
+    <input type="password" class="form-control" name="Password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-secondary">Login</button>
+
+    <p class="text-center"> <a href="{% url 'reset_password' %}">Forgot your password?</a> instead.</p>
+    <p class="text-center">If you haven't an account yet, <a href="{% url 'registration' %}">register</a> instead.</p>
+  </center>
+</form>
+
+{% endblock %}

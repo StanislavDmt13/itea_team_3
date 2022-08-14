@@ -20,7 +20,7 @@ class UserForm(ModelForm):
                    'first_name': forms.TextInput(attrs={'class': 'form-control-3', 'placeholder': 'First_name'}),
                     'last_name': forms.TextInput(attrs={'class': 'form-control-3', 'placeholder': 'Last_name'}),
                     'phone': forms.TextInput(attrs={'class': 'form-control-3', 'placeholder': 'Phone'}),
-                    'email': forms.TextInput(attrs={'class': 'form-control-3', 'placeholder': 'Email'}),
+                    'email': forms.EmailInput(attrs={'class': 'form-control-3', 'placeholder': 'Email'}),
                  }
 
 

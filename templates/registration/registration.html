@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<center>
+    {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p>There was an error with your form</p>
+            </div>
+    {% endif %}
+    <h1> Registration</h1>
+    <form action="" method="post" >
+        {% csrf_token %}
+         {{ register_form.as_p }}
+
+
+        <input type="submit" value="Save" class="btn btn-primary btn-sucsess">
+    </form>
+</center>
+<p class="text-center">If you already have an account, <a href="{% url 'login_user' %}">login</a> instead.</p>
+
+{% endblock %}

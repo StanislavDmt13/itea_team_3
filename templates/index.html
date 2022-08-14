@@ -24,7 +24,8 @@
 
     <body>
         <div class="wrapper">
-            <div class="sidebar">
+                {% if user.is_authenticated %}
+                <div class="sidebar">
                 <div class="sidebar-text d-flex flex-column h-100 justify-content-center text-center">
                     {% if user.avatar %}
                         <img src="{{MEDIA_URL}}{{  user.avatar.url }}" class="mx-auto d-block w-75 bg-primary img-fluid rounded-circle mb-4 p-3"
@@ -58,30 +59,45 @@
                     <i class="fas fa-2x fa-angle-double-right text-primary"></i>
                 </div>
             </div>
+                {% endif %}
+            <div class="content">
             <!-- Navbar Start -->
                 <div class="container p-0">
-                    <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+                    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
                         <a href="" class="navbar-brand d-block d-lg-none">Navigation</a>
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav m-auto">
-                                <a href="index.html" class="nav-item nav-link active">Home</a>
+                                <a href="{% url 'myprofile-homepage' %}" class="nav-item nav-link active">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="blog.html" class="nav-item nav-link">Blog Grid</a>
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                                {% else %}
+
+                                <a href="{% url 'login_user' %}" class="nav-item nav-link">Login</a>
+                                <a href="{% url 'registration' %}" class="nav-item nav-link">Registration</a>
+                                {% endif %}
                             </div>
                         </div>
                     </nav>
                 </div>
-                <!-- Navbar End -->
-            <div class="content">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+</div>
+
+                {% endfor %}
+                {% endif%}
+            
                 {% block content %}
 
                 {% endblock %}
                 <!-- Footer Start -->
-                <div class="container py-4 bg-secondary text-center">
+                <div class="container py-4 bg-primary text-center">
                     <p class="m-0 text-white">
                         &copy; <a class="text-white font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
                     </p>

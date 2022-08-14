@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView, FormView
@@ -6,11 +7,11 @@ from db.models import User
 from .forms import UserForm, UserAvatar
 
 
-class HomepageView(TemplateView):
+class HomepageView(TemplateView,LoginRequiredMixin):
     template_name = 'profile.html'
 
 
-class ProfileEditView(UpdateView, FormView):
+class ProfileEditView(UpdateView, FormView, LoginRequiredMixin):
     model = User
     form_class = UserForm
     avatar_form_class = UserAvatar
@@ -29,8 +30,7 @@ class ProfileEditView(UpdateView, FormView):
 
         return super(ProfileEditView, self).get_context_data(**kwargs)
 
-
-
+@login_required
 def change_avatar(request):
     if request.method == 'POST':
         data = UserAvatar(request.POST, request.FILES, instance=request.user)
