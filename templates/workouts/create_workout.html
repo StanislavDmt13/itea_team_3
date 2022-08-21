@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block title %}Add my workout{% endblock %}
+
+{% block content %}<br>
+    <div class="features">
+        <center><h2>Add my workout</h2></center>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}<br>
+            {{ form.name_workout }}<br>
+            {{ form.exercise_name }}<br>
+            {{ form.number_of_approaches }}<br>
+            {{ form.amount_of_exercise }}<br>
+            {{ form.distance }}<br>
+            {{ form.workout_time }}<br>
+            {{ form.description }}<br>
+            <p>{{ form.photo_workout }}</p><br>
+            {{ form.user.as_hidden}}
+            <p><center><button class="btn btn-success" type="submit">Add workout</button></center></p>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+
+
