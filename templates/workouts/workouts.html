@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block title %}My workouts{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <a href="{% url 'create_workout' %}"><button class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</button></a>
+        <h3>My workouts</h3>
+        <ul>
+            {% if workout %}
+                {% for i in workout %}
+                <li>
+                    <div class="alert alert-warning">
+                    <h5>{{i.name_workout}}</h5>
+                    <p>{{i.date_create}}</p>
+                        <img src="{{i.photo_url}}" style="max-height:200px">
+                    <p>{{i.description}}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>You don't have any workouts yet</p>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
