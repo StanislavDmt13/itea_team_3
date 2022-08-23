@@ -61,8 +61,49 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-
     def __str__(self):
         return self.email
+
+
+class Category(models.Model):
+
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class Task(models.Model):
+
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    category = models.ForeignKey(
+        Category, related_name="tasks", on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class TrainProgram(models.Model):
+    name = models.CharField(max_length=200)
+    author = models.ForeignKey(User, related_name="programs", on_delete=models.CASCADE)
+    tasks = models.ManyToManyField(Task, related_name="programs")
+
+    def __str__(self):
+        return self.name
+
+
+class Train(models.Model):
+
+    program = models.ForeignKey(
+        TrainProgram, related_name="trains", on_delete=models.CASCADE
+    )
+    author = models.ForeignKey(User, related_name="trains", on_delete=models.CASCADE)
+    started_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
