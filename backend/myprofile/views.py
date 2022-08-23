@@ -7,7 +7,7 @@ from db.models import User
 from .forms import UserForm, UserAvatar
 
 
-class HomepageView(TemplateView,LoginRequiredMixin):
+class HomepageView(TemplateView, LoginRequiredMixin):
     template_name = 'profile.html'
 
 
