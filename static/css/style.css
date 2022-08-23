@@ -9873,3 +9873,8 @@ h3 {
 }
 
 /*# sourceMappingURL=style.css.map */
+form {
+    margin-left: 10%;
+    width: 500px;
+    margin-top: 50px;
+}

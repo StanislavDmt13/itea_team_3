@@ -56,7 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    object = UserManager()
+    objects = UserManager()
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -105,5 +105,26 @@ class Train(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Workouts(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name_workout = models.CharField('Название тренировки', max_length=50)
+    date_create = models.DateTimeField('Дата теренировки', auto_now_add=True)
+    exercise_name = models.CharField('Название упражнения', max_length=50)
+    number_of_approaches = models.IntegerField('Количество подходов')
+    amount_of_exercise = models.IntegerField('Количество упражнений')
+    distance = models.DecimalField('Пройденая дистанция', max_digits=5, decimal_places=2)
+    workout_time = models.DecimalField('Время тренировки', max_digits=5, decimal_places=2)
+    photo_workout = models.ImageField('Фото тренировки', upload_to='photos/%Y/%m/%d/', null=True, blank=True)
+    description = models.TextField('Описание тренировки')
+
+    def __str__(self):
+        return self.name_workout
+
+    @property
+    def photo_url(self):
+        if self.photo_workout and hasattr(self.photo_workout, 'url'):
+            return self.photo_workout.url
 
 

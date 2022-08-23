@@ -30,6 +30,7 @@ class ProfileEditView(UpdateView, FormView, LoginRequiredMixin):
 
         return super(ProfileEditView, self).get_context_data(**kwargs)
 
+
 @login_required
 def change_avatar(request):
     if request.method == 'POST':

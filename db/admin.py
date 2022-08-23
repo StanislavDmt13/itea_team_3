@@ -78,3 +78,8 @@ class TaskAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
 
 	list_display = ['name',]
+
+@admin.register(models.Workouts)
+class WorkoutsAdmin(admin.ModelAdmin):
+
+	list_display = ['name_workout', ]

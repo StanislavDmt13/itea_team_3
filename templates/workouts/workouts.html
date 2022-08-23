@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block title %}My workouts{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <a href="{% url 'create_workout' %}"><button class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</button></a>
+        <h3>My workouts</h3>
+        <ul>
+            {% if workout %}
+            {% for work in workout %}
+            <li>
+            <div class="row blog-item px-3 pb-5">
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{{MEDIA_URL}}{{ work.photo_workout.url }}" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{work.name_workout}}</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{work.date_create}}</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> {{work.exercise_name}}</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> {{work.workout_time}}</small>
+                            </div>
+                            <p>
+                                {{ work.description }}
+                            </p>
+                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+            </li>
+            {% endfor %}
+            {% else %}
+                <p>You don't have any workouts yet</p>
+            {% endif %}
+
+        </ul>
+    </div>
+{% endblock %}
