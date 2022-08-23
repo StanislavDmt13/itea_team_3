@@ -1,0 +1,204 @@
+{% extends 'index.html' %}
+
+
+{%block title%}
+    My profile
+{% endblock %}
+{% load static %}
+{% block content %}
+
+                <!-- Carousel Start -->
+                <div class="container p-0">
+                    <div id="blog-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="w-100" src="{% static 'img/carousel-1.jpg' %}" alt="Image">
+                                <div class="carousel-caption d-flex flex-column align-items-end justify-content-end">
+
+                                    <a href="" class="btn btn-lg btn-outline-light mt-4">View All</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-100" src="{% static 'img/carousel-2.jpg' %}" alt="Image">
+                                <div class="carousel-caption d-flex flex-column align-items-end justify-content-end">
+                                    <a href="" class="btn btn-lg btn-outline-light mt-4">View all</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-100" src="{% static 'img/carousel-3.jpg' %}" alt="Image">
+                                <div class="carousel-caption d-flex flex-column align-items-end justify-content-end">
+                                    <a href="" class="btn btn-lg btn-outline-light mt-4">View All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel End -->
+                <div class="container p-0">
+            <div class="main-box clearfix">
+                <div class="profile-header">
+                    <div class="row">
+                        <div class="col-sm-9">
+                    <h3><span>User info</span></h3>
+                        </div>
+                        <div class="col-sm-3">
+                    <a href="{% url 'myprofile-edit' %}" class="btn btn-primary btn-block edit-profile">
+                        <span><i class="fa fa-pencil-square fa-lg"></i> Edit profile</span>
+                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="row profile-user-info">
+                    <div class="col-sm-6">
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-label">
+                                First Name
+                            </div>
+                            <div class="profile-user-details-label">
+                                Last Name
+                            </div>
+                            <div class="profile-user-details-label">
+                                Birthday
+                            </div>
+                            <div class="profile-user-details-label">
+                                Phone
+                            </div>
+                            <div class="profile-user-details-label">
+                                Email
+                            </div>
+                            <div class="profile-user-details-label">
+                                Country
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-value">
+                                {{user.first_name}}
+                            </div>
+                            <div class="profile-user-details-value">
+                                {{user.last_name}}
+                            </div>
+                            <div class="profile-user-details-value">
+                                {{user.birthday}}
+                            </div>
+                            <div class="profile-user-details-value">
+                                {{user.phone}}
+                            </div>
+                            <div class="profile-user-details-value">
+                                {{user.email}}
+                            </div>
+                            <div class="profile-user-details-value">
+                                {{user.country.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Blog List Start -->
+                <div class="container bg-white pt-5">
+                    {% if workout %}
+                {% for i in workout %}
+                    <div class="row blog-item px-3 pb-5">
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{{MEDIA_URL}}{{i.photo_workout.url}}" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{i.name_workout}}</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{i.date_create}}</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i>{{i.exercise_name }} </small>
+                            </div>
+                            <p>
+                                {{i.description}}
+                            </p>
+                            <a class="btn btn-link p-0" href="{% url 'detail_workout' i.pk %}">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                <p>You don't have any workouts yet</p>
+            {% endif %}
+
+
+
+
+                <!-- Subscribe Start -->
+                <div class="container py-5 px-4 bg-secondary text-center">
+                    <h1 class="text-white font-weight-bold">Subscribe My Newsletter</h1>
+                    <p class="text-white">Subscribe and get my latest article in your inbox</p>
+                    <form class="form-inline justify-content-center">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Your Email">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                          </div>
+                    </form>
+                </div>
+                <!-- Subscribe End -->
+
+
+                <!-- Blog List Start -->
+                 
+                <div class="container bg-white pt-5">
+                    <div class="row blog-item px-3 pb-5">
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-4.jpg' %}" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Article {{i}}</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci velit id libero
+                            </p>
+                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+                     <div class="row blog-item px-3 pb-5">
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-5.jpg' %}" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Article 2</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci velit id libero
+                            </p>
+                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="row blog-item px-3 pb-5">
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-6.jpg' %}" alt="Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Article 3</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci velit id libero
+                            </p>
+                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+{% endblock %}
+

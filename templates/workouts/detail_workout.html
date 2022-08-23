@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}{{ workout.name_workout }}{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h3>{{ workout.name_workout }}</h3>
+        <P>{{ workout.date_create }}</P>
+        <p><img src="{{workout.photo_url}}" style="max-height:200px"></p>
+        <p>Exercise name: {{ workout.exercise_name }}</p>
+        <p>Number of approaches: {{ workout.number_of_approaches }}</p>
+        <p>Amount_of_exercise: {{ workout.amount_of_exercise }}</p>
+        <p>Distance: {{ workout.distance }}</p>
+        <p>Workout time: {{ workout.workout_time }}</p>
+        <p>Description: {{ workout.description }}</p>
+        <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'update_workout' workout.id %}" class="btn btn-info">Edit</a>
+    </div>
+{% endblock %}
+
