@@ -32,7 +32,7 @@
                                  alt="UserImage" >
                     {% else %}
                         <img class="mx-auto d-block w-75 bg-primary img-fluid rounded-circle mb-4 p-3"
-                             src="{% static 'img/profile.jpg' %}" alt="Image">
+                             src="{% static 'img/profile2.jpg' %}" alt="Image">
                     {% endif %}
 
                     <h1 class="font-weight-bold">{{user.username}}</h1>
@@ -48,15 +48,15 @@
                             <li><i class="fab fa-instagram"></i><a href="#">Avenger_Scarlett</a></li>
                         </ul>
                     </div>
-
+                    <div class="d-flex justify-content-center mb-5">
                     {% block avatar %}
-                    <button class="btn btn-primary" type="submit">Upload Your Train</button>
+                        <a href="{% url 'create_workout' %}" class="btn btn-secondary">Upload Your Workout</a>
                     {% endblock %}
-
+                    </div>
 
                 </div>
                 <div class="sidebar-icon d-flex flex-column h-100 justify-content-center text-right">
-                    <i class="fas fa-2x fa-angle-double-right text-primary"></i>
+                    <i class="fas fa-2x fa-angle-double-right text-info"></i>
                 </div>
             </div>
                 {% endif %}

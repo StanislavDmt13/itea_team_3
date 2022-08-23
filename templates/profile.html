@@ -99,65 +99,31 @@
                 </div>
                 <!-- Blog List Start -->
                 <div class="container bg-white pt-5">
-
-
+                    {% if workout %}
+                {% for i in workout %}
                     <div class="row blog-item px-3 pb-5">
                         <div class="col-md-5">
-                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-4.jpg' %}" alt="Image">
+                            <img class="img-fluid mb-4 mb-md-0" src="{{MEDIA_URL}}{{i.photo_workout.url}}" alt="Image">
                         </div>
                         <div class="col-md-7">
-                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">My workouts {{i}}</h3>
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{i.name_workout}}</h3>
                             <div class="d-flex mb-3">
-                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
-                            </div>
-                            <div class="features">
-
-                                    <p>Here you can see all your workouts</p>
-
-                            </div>
-
-                            <a class="btn btn-link p-0" href="{% url 'workout' %}">My workouts <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-
-                        <div class="row blog-item px-3 pb-5">
-                        <div class="col-md-5">
-                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-2.jpg' %}" alt="Image">
-                        </div>
-                        <div class="col-md-7">
-                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Lorem ipsum dolor sit amet</h3>
-                            <div class="d-flex mb-3">
-                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> {{i.date_create}}</small>
+                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i>{{i.exercise_name }} </small>
                             </div>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci velit id libero
+                                {{i.description}}
                             </p>
-                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
+                            <a class="btn btn-link p-0" href="{% url 'detail_workout' i.pk %}">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
-                    <div class="row blog-item px-3 pb-5">
-                        <div class="col-md-5">
-                            <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-3.jpg' %}" alt="Image">
-                        </div>
-                        <div class="col-md-7">
-                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Lorem ipsum dolor sit amet</h3>
-                            <div class="d-flex mb-3">
-                                <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
-                                <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu suscipit orci velit id libero
-                            </p>
-                            <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Blog List End -->
+
+                {% endfor %}
+            {% else %}
+                <p>You don't have any workouts yet</p>
+            {% endif %}
+
+
 
 
                 <!-- Subscribe Start -->
@@ -179,7 +145,6 @@
                 <!-- Blog List Start -->
                  
                 <div class="container bg-white pt-5">
-                    {# for i in range (3,6) #}
                     <div class="row blog-item px-3 pb-5">
                         <div class="col-md-5">
                             <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-4.jpg' %}" alt="Image">

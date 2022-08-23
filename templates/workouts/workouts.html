@@ -14,7 +14,7 @@
                     <div class="alert alert-warning">
                         <h5>{{i.name_workout}}</h5>
                         <p>{{i.date_create}}</p>
-                        <p><img src="{{i.photo_url}}" style="max-height:200px"></p>
+                        <p><img src="{{MEDIA_URL}}{{i.photo_workout.url}}" style="max-height:200px"></p>
                         <p>{{i.description}}</p>
                         <a href="{% url 'detail_workout' i.pk %}" class="btn btn-warning">Read workout</a>
                     </div>
