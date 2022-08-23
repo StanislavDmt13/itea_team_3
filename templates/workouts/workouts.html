@@ -1,13 +1,15 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block title %}My workouts{% endblock %}
 
 {% block content %}
     <div class="features">
-        <a href="{% url 'create_workout' %}"><button class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</button></a>
-        <h3>My workouts</h3>
+        <center><h3>My workouts</h3></center>
+        <center><p><a href="{% url 'create_workout' %}" class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</a></p></center>
         <ul>
             {% if workout %}
+<<<<<<< HEAD
             {% for work in workout %}
             <li>
             <div class="row blog-item px-3 pb-5">
@@ -26,6 +28,16 @@
                             </p>
                             <a class="btn btn-link p-0" href="">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
+=======
+                {% for i in workout %}
+                <li>
+                    <div class="alert alert-warning">
+                        <h5>{{i.name_workout}}</h5>
+                        <p>{{i.date_create}}</p>
+                        <p><img src="{{MEDIA_URL}}{{i.photo_workout.url}}" style="max-height:200px"></p>
+                        <p>{{i.description}}</p>
+                        <a href="{% url 'detail_workout' i.pk %}" class="btn btn-warning">Read workout</a>
+>>>>>>> e8ce097b5969920faaf938ce3f4e742f309fe385
                     </div>
             </li>
             {% endfor %}

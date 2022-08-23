@@ -127,4 +127,6 @@ class Workouts(models.Model):
         if self.photo_workout and hasattr(self.photo_workout, 'url'):
             return self.photo_workout.url
 
+    def get_absolute_url(self):
+        return f'/workout/{self.id}'
 
