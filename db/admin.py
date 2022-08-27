@@ -66,11 +66,11 @@ class TaskAdmin(admin.ModelAdmin):
 
 	ordering = ['id']
 	list_display = ['name', 'category']
-	fieldsets = ((_('Task Info'), {'fields': ('name', 'description', 'category')}),)
+	fieldsets = ((_('Task Info'), {'fields': ('name', 'description', 'category', 'example_photo',)}),)
 
 	add_fieldsets = (
 		(None, {'classes': ('wide',),
-				'fields': ('name', 'description', 'category')}),
+				'fields': ('name', 'description', 'category', 'example_photo',)}),
 	)
 
 
@@ -78,6 +78,7 @@ class TaskAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
 
 	list_display = ['name',]
+
 
 @admin.register(models.Workouts)
 class WorkoutsAdmin(admin.ModelAdmin):

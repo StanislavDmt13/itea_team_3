@@ -3,6 +3,7 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
     BaseUserManager,)
+from django.urls import reverse
 from django_countries.fields import CountryField
 
 
@@ -68,13 +69,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Category(models.Model):
 
     name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="category", null=True, blank=True)
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('train-category', kwargs={'cat_id': self.pk})
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
 
 class Task(models.Model):
 
+    example_photo = models.ImageField(upload_to="task", null=True, blank=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ForeignKey(
@@ -129,4 +138,7 @@ class Workouts(models.Model):
 
     def get_absolute_url(self):
         return f'/workout/{self.id}'
+
+    class Meta:
+        verbose_name_plural = 'Workouts'
 

@@ -3,12 +3,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView, FormView
-from db.models import User
+from db.models import User, Workouts, Category
 from .forms import UserForm, UserAvatar
 
 
 class HomepageView(TemplateView, LoginRequiredMixin):
     template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['workouts'] = Workouts.objects.filter(user=self.request.user)
+        kwargs['categories'] = Category.objects.all()
+        return super().get_context_data(**kwargs)
 
 
 class ProfileEditView(UpdateView, FormView, LoginRequiredMixin):
