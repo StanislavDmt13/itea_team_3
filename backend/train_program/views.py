@@ -1,17 +1,23 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_list_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from db.models import Task, Category
 
 
-def task_detail(request, pk):
-    task = Task.objects.get(pk=pk)
-    return render(request, 'programs/task.html', {'task': task})
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'programs/task.html'
+    slug_url_kwarg = 'task_slug'
+    context_object_name = 'task'
 
 
-def show_category(request, cat_id):
-    task_list = Task.objects.filter(category=cat_id)
-    return render(request, 'programs/task_list.html', {'task_list': task_list})
+class TaskByCategoryView(ListView):
+    model = Task
+    context_object_name = 'task_list'
+    template_name = 'programs/task_list.html'
+
+    def get_queryset(self):
+        return Task.objects.filter(category__slug=self.kwargs['cat_slug'])
 
 
 class CategoriesView(ListView):

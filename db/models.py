@@ -70,12 +70,13 @@ class Category(models.Model):
 
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to="category", null=True, blank=True)
+    slug = models.SlugField(max_length=150, unique=True, db_index=True, verbose_name='URL')
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('train-category', kwargs={'cat_id': self.pk})
+        return reverse('train-category', kwargs={'cat_slug': self.slug})
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -85,6 +86,7 @@ class Task(models.Model):
 
     example_photo = models.ImageField(upload_to="task", null=True, blank=True)
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=150, unique=True, db_index=True, verbose_name='URL')
     description = models.TextField()
     category = models.ForeignKey(
         Category, related_name="tasks", on_delete=models.CASCADE

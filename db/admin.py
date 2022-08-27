@@ -66,17 +66,18 @@ class TaskAdmin(admin.ModelAdmin):
 
 	ordering = ['id']
 	list_display = ['name', 'category']
-	fieldsets = ((_('Task Info'), {'fields': ('name', 'description', 'category', 'example_photo',)}),)
+	prepopulated_fields = {'slug': ('name',)}
+	fieldsets = ((_('Task Info'), {'fields': ('name', 'description', 'category', 'example_photo', 'slug')}),)
 
 	add_fieldsets = (
 		(None, {'classes': ('wide',),
-				'fields': ('name', 'description', 'category', 'example_photo',)}),
+				'fields': ('name', 'description', 'category', 'example_photo', )}),
 	)
 
 
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-
+	prepopulated_fields = {'slug': ('name',)}
 	list_display = ['name',]
 
 
