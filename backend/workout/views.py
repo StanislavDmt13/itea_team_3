@@ -5,7 +5,7 @@ from django.views.generic import UpdateView, DeleteView
 
 
 def my_workout(request):
-    workout = Workouts.objects.filter(user=request.user).order_by('-date_create')
+    workout = Workouts.objects.filter(user=request.user)
     return render(request, 'workouts/workouts.html', {'workout': workout})
 
 
