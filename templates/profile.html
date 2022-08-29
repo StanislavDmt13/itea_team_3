@@ -96,7 +96,9 @@
                 {% for i in workouts %}
                     <div class="row blog-item px-3 pb-5">
                         <div class="col-md-5">
+                            {% if i.photo_workout %}
                             <img class="img-fluid mb-4 mb-md-0" src="{{MEDIA_URL}}{{i.photo_workout.url}}" alt="Image">
+                            {% endif %}
                         </div>
                         <div class="col-md-7">
                             <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{i.name_workout}}</h3>
