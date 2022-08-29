@@ -8,6 +8,6 @@ urlpatterns = [
     path('auth/', include('backend.authorization.urls')),
     path('auth/', include('django.contrib.auth.urls')),
     path('workout/', include('backend.workout.urls')),
-    path('api/', include('backend.apiworkout.urls')),
+    path('apiw/', include('backend.apiworkout.urls')),
 
     ]
