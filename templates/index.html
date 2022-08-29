@@ -70,10 +70,10 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav m-auto">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'myprofile-homepage' %}" class="nav-item nav-link active">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="blog.html" class="nav-item nav-link">Search</a>
-                                {% if user.is_authenticated %}
                                 <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                                 {% else %}
 

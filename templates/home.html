@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{%block title%}{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <!-- Favicon -->
+         {% load static %}
+        <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300;400;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href= "{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link href= "{% static 'css/home.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+
+    <main class="bg-dark text-light">
+        <h1 class="font-weight-bold text-warning">Explore CROSSFIT!</h1>
+
+        <p>CrossFit can be used to accomplish any goal, from improved health to weight loss to better performance.</br>
+          From general fitness to sport-specific training, there is no better program out there.</p>
+
+        <a href="{% url 'registration' %}"><button type="button" class="btn btn-light rounded-pill">Sign up</button></a>
+
+        <div class="register">
+            <p>Already have an account?</p>
+            <a href="{% url 'login_user' %}"><button type="button" class="btn btn-light rounded-pill">Sign in</button></a>
+        </div>
+    </main>
+    </body>
+</html>
+
