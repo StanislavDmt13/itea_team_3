@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from db.models import Workouts
 from .forms import WorkoutsForm
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView
 
 
 def my_workout(request):
