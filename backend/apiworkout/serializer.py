@@ -3,6 +3,7 @@ from db.models import Workouts
 
 # Django API используя Django Rest Framework
 
+
 class WorkoutSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
     name_workout = serializers.CharField(max_length=50)
