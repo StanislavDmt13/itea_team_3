@@ -74,6 +74,7 @@
                                 <a href="{% url 'myprofile-homepage' %}" class="nav-item nav-link active">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="blog.html" class="nav-item nav-link">Search</a>
+                                <a href="{% url 'support' %}" class="nav-item nav-link">Support</a>
                                 <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                                 {% else %}
 
@@ -99,7 +100,7 @@
 
                 {% endblock %}
                 <!-- Footer Start -->
-                <div class="container py-4 bg-primary text-center">
+                <div class="container py-4 bg-primary text-center" style="margin-top: 2em">
                     <p class="m-0 text-white">
                         &copy; <a class="text-white font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
                     </p>

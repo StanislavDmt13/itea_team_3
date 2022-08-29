@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+<form method="post">
+  <center>
+    <h2>We always here to support you!</h2>
+  {% csrf_token %}
+    <form action="" method="post" >
+    <div class="input-group">
+      <input type="text" class="form-control" name="question" placeholder="Enter your question...">
+    </div>
+    <a><button type="submit" class="btn btn-secondary my-3">Ask</button></a>
+    </form>
+  </center>
+</form>
+
+{% endblock %}
