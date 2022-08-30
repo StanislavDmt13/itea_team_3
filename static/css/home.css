@@ -1,0 +1,16 @@
+body {
+    background-image: url('../img/crossfit.jpg');
+    height: 100%;
+}
+
+main {
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    width: fit-content;
+    padding: 2em;
+}
+
+.register {
+    margin-top: 3em;
+ }
