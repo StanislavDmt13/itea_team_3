@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+  form {
+    text-align: center;
+  }
+</style>
+<form method="post">
+  <h2>We always ready to help</h2>
+  {% csrf_token %}
+  <input type="text" class="form-control my-3"  name="question" placeholder="Ask us anything...">
+  <a class="my-2"><button type="submit" style="margin-bottom: 30px" class="btn btn-secondary">Ask</button></a>
+</form>
+{% endblock %}
