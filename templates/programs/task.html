@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h2>{{task.name}}</h2>
+{%if task.example_photo %}
+<img src="{{task.example_photo.url }}" >
+</br>
+<p>{{task.description}}</p>
+{% endif %}
+{% endblock %}

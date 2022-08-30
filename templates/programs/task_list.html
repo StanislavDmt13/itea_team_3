@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{%block title%}
+    Task list
+{% endblock %}
+
+{% load static %}
+{% block content %}
+{% for task in task_list %}
+<div class="container bg-white pt-5">
+
+                    <div class="row blog-item px-3 pb-5">
+                        {% if task.example_photo %}
+                        <div class="col-md-5">
+                            <img class="img-fluid mb-4 mb-md-0" src="{{task.example_photo.url }}" alt="Image">
+                        </div>
+                        {% else %}
+                        <div class="col-md-5">
+                        </div>
+                        {% endif %}
+                        <div class="col-md-7">
+                            <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{task.name}}</h3>
+                            <div class="d-flex mb-3">
+                                <small class="mr-2 text-muted"><i class="fa fa-cat-name"></i> {{task.category.name}}</small>
+                            </div>
+                            <a class="btn btn-link p-0" href="{%url 'train-task' task.slug %}">Detail <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
