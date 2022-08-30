@@ -30,6 +30,7 @@ def create_workout(request):
     if request.method == 'POST':
         form = WorkoutsForm(request.POST, request.FILES)
         if form.is_valid():
+            print(form)
             new_form = form.save(commit=False)
             new_form.user = request.user
             new_form.save()

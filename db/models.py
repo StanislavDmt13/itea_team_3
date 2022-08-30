@@ -144,3 +144,14 @@ class Workouts(models.Model):
     class Meta:
         verbose_name_plural = 'Workouts'
 
+
+class Question(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.CharField('Питання', max_length=200)
+    answer = models.CharField('Відповідь', max_length=200, blank=True)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def __str__(self):
+        return self.question

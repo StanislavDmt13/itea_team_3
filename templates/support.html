@@ -9,6 +9,6 @@
   <h2>We always ready to help</h2>
   {% csrf_token %}
   <input type="text" class="form-control my-3"  name="question" placeholder="Ask us anything...">
-  <a class="my-2"><button type="submit" style="margin-bottom: 30px" class="btn btn-secondary">Ask</button></a>
+  <a class="my-2" href="{% url 'support' %}"><button type="submit" style="margin-bottom: 30px" class="btn btn-secondary">Ask</button></a>
 </form>
 {% endblock %}
