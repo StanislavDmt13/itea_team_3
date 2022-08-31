@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
- path('', views.ask, name='support')
+ path('', views.my_questions, name='support')
 ]

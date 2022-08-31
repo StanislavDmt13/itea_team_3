@@ -85,3 +85,9 @@ class CategoryAdmin(admin.ModelAdmin):
 class WorkoutsAdmin(admin.ModelAdmin):
 
 	list_display = ['name_workout', ]
+
+
+@admin.register(models.Question)
+class QuestionAdmin(admin.ModelAdmin):
+
+	list_display = ['question', ]

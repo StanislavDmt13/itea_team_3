@@ -149,6 +149,7 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.CharField('Питання', max_length=200)
     answer = models.CharField('Відповідь', max_length=200, blank=True)
+    date_create = models.DateTimeField('Дата створення', auto_now_add=True)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
