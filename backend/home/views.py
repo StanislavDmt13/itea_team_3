@@ -1,8 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.views.generic import TemplateView
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 
 class HomepageView(TemplateView):
     template_name = 'home.html'

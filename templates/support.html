@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+  form {
+    text-align: center;
+  }
+  ul {
+  list-style-type: none;
+    }
+</style>
+<form method="post">
+  <h2>We always ready to help</h2>
+  {% csrf_token %}
+  <input type="text" class="form-control my-3"  name="question" placeholder="Ask us anything...">
+  <a class="my-2" href="{% url 'support' %}"><button type="submit" style="margin-bottom: 30px" class="btn btn-secondary">Ask</button></a>
+
+  <ul>
+    {% if question %}
+        {% for i in question %}
+        <li>
+            <div class="alert alert-primary">
+                <h5 class="font-weight-bold">{{i.question}}</h5>
+              {% if i.answer %}
+                <p>{{i.answer}}</p>
+              {% else %}
+                <p>No answer yet</p>
+              {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    {% else %}
+        <p>You don't have any questions yet</p>
+    {% endif %}
+</ul>
+</form>
+{% endblock %}
