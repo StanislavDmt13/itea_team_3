@@ -3,7 +3,7 @@ from db.models import User
 from . serializer import ProfileSerializer
 
 
-class ProfileView(generics.UpdateAPIView):
+class ProfileView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
