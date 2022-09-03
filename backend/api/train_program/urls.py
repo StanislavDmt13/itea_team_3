@@ -1,6 +1,7 @@
 from django.urls import path, include
-from .views import TaskAPIView
+from .routers import router
 
 urlpatterns = [
-    path('task_list/', TaskAPIView.as_view()),
+    path('', include(router.urls)),
+
     ]
