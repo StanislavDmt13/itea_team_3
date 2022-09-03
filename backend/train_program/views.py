@@ -11,6 +11,7 @@ class TaskDetailView(DetailView):
 
 
 class TaskByCategoryView(ListView):
+    paginate_by = 3
     model = models.Task
     context_object_name = 'task_list'
     template_name = 'programs/task_list.html'

@@ -24,4 +24,24 @@
             {% endif %}
         </ul>
     </div>
+<ul class="pagination justify-content-center">
+    {% for p in paginator.page_range %}
+    {% if paginator.count > 1 %}
+    {% if page_obj.number == p %}
+    <li class="page-item active">
+        <span class="page-link">
+        {{ p }}
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+
+</ul>
 {% endblock %}

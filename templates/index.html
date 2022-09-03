@@ -36,9 +36,9 @@
                     {% endif %}
 
                     <h1 class="font-weight-bold">{{user.username}}</h1>
-                    <p class="mb-4">
+                    <a class="mb-4" href="{% url 'myprofile-about' %}">
                         Something About Me
-                    </p>
+                    </a>
                     <div class="d-flex justify-content-center mb-5">
                         <ul class="fa-ul">
                             <li><i class="fab fa-twitter"></i><a href="#">@{{user.username}}</a></li>

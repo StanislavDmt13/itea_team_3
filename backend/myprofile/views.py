@@ -2,16 +2,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import TemplateView, UpdateView, FormView, ListView
+from django.views.generic import TemplateView, UpdateView, FormView
 from db.models import User, Workouts, Category
 from .forms import UserForm, UserAvatar
+
+
+class UserView(TemplateView, LoginRequiredMixin):
+    template_name = 'about.html'
 
 
 class HomepageView(TemplateView, LoginRequiredMixin):
     template_name = 'profile.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['workouts'] = Workouts.objects.filter(user=self.request.user)
+        kwargs['workout'] = Workouts.objects.filter(user=self.request.user).order_by('-date_create')[:2]
         kwargs['categories'] = Category.objects.all()
         return super().get_context_data(**kwargs)
 

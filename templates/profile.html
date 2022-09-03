@@ -10,9 +10,10 @@
                     <div class="container p-0">
                     <div id="blog-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
+                            <h3>Choose your category</h3>
                             {% for category in categories %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}">
-
+                            <h4>{{category.name}}</h4>
 
                             {% if category.image %}
                                 <a href="{{ category.get_absolute_url }}" class="btn btn-lg btn-outline-light mt-4">
@@ -26,77 +27,15 @@
                     </div>
                 </div>
 
-                <div class="container p-0">
-            <div class="main-box clearfix">
-                <div class="profile-header">
-                    <div class="row">
-                        <div class="col-sm-9">
-                    <h3><span>User info</span></h3>
-                        </div>
-                        <div class="col-sm-3">
-                    <a href="{% url 'myprofile-edit' %}" class="btn btn-primary btn-block edit-profile">
-                        <span><i class="fa fa-pencil-square fa-lg"></i> Edit profile</span>
-                    </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-                <div class="row profile-user-info">
-                    <div class="col-sm-6">
-                        <div class="profile-user-details clearfix">
-                            <div class="profile-user-details-label">
-                                First Name
-                            </div>
-                            <div class="profile-user-details-label">
-                                Last Name
-                            </div>
-                            <div class="profile-user-details-label">
-                                Birthday
-                            </div>
-                            <div class="profile-user-details-label">
-                                Phone
-                            </div>
-                            <div class="profile-user-details-label">
-                                Email
-                            </div>
-                            <div class="profile-user-details-label">
-                                Country
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="profile-user-details clearfix">
-                            <div class="profile-user-details-value">
-                                {{user.first_name}}
-                            </div>
-                            <div class="profile-user-details-value">
-                                {{user.last_name}}
-                            </div>
-                            <div class="profile-user-details-value">
-                                {{user.birthday}}
-                            </div>
-                            <div class="profile-user-details-value">
-                                {{user.phone}}
-                            </div>
-                            <div class="profile-user-details-value">
-                                {{user.email}}
-                            </div>
-                            <div class="profile-user-details-value">
-                                {{user.country.name}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
                 <!-- Blog List Start -->
                 <div class="container bg-white pt-5">
                         <h3>Workouts</h3>
-                    {% if workouts %}
-                {% for i in workouts %}
+                    {% if workout %}
+                {% for i in workout %}
                     <div class="row blog-item px-3 pb-5">
                         <div class="col-md-5">
-                            <img src="{{i.photo_url}}" style="max-height:200px">
+                            <img class="img-fluid mb-4 mb-md-0" src="{{i.photo_url}}" alt="Image">
                         </div>
                         <div class="col-md-7">
                             <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">{{i.name_workout}}</h3>
@@ -112,9 +51,13 @@
                     </div>
 
                 {% endfor %}
+                    <a href="{% url 'workout' %}" class="btn btn-primary view-workout">
+                        <span><i class="fa fa-pencil-square fa-lg"></i> View all</span>
+                    </a>
             {% else %}
                 <p>You don't have any workouts yet</p>
             {% endif %}
+
 
 
 
@@ -158,13 +101,11 @@
                     </div>
                     <div class="row blog-item px-3 pb-5">
                         <div class="col-md-5">
-                            {% if i.photo_workout %}
                             <img class="img-fluid mb-4 mb-md-0" src="{% static 'img/blog-6.jpg' %}" alt="Image">
-                            {% endif %}
                         </div>
                         <div class="col-md-7">
                             <h3 class="mt-md-4 px-md-3 mb-2 py-2 bg-white font-weight-bold">Article 3</h3>
-                            <div class="d-flex mb-3">python manage.py makemigrations
+                            <div class="d-flex mb-3">
                                 <small class="mr-2 text-muted"><i class="fa fa-calendar-alt"></i> 01-Jan-2045</small>
                                 <small class="mr-2 text-muted"><i class="fa fa-folder"></i> Web Design</small>
                                 <small class="mr-2 text-muted"><i class="fa fa-comments"></i> 15 Comments</small>

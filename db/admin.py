@@ -91,3 +91,4 @@ class WorkoutsAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
 
 	list_display = ['question', ]
+

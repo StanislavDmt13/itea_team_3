@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from db.models import Workouts
 from .forms import WorkoutsForm
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, ListView
 
 
-def my_workout(request):
-    workout = Workouts.objects.filter(user=request.user)
-    return render(request, 'workouts/workouts.html', {'workout': workout})
+class MyWorkout(ListView):
+    paginate_by = 4
+    model = Workouts
+    context_object_name = 'workout'
+    template_name = 'workouts/workouts.html'
 
 
 def detail_workout(request, pk):
