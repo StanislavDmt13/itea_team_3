@@ -10,6 +10,10 @@ class MyWorkout(ListView):
     context_object_name = 'workout'
     template_name = 'workouts/workouts.html'
 
+    def get_context_data(self, **kwargs):
+        kwargs['workout'] = Workouts.objects.filter(user=self.request.user).order_by('-date_create')
+        return super().get_context_data(**kwargs)
+
 
 def detail_workout(request, pk):
     workout = Workouts.objects.get(pk=pk)
