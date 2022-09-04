@@ -119,6 +119,8 @@ class Train(models.Model):
 
 
 class Workouts(models.Model):
+    BOOL_CHOICES = ((True, 'Private'), (False, 'Not private'))
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name_workout = models.CharField('Название тренировки', max_length=50)
     date_create = models.DateTimeField('Дата теренировки', auto_now_add=True)
@@ -129,6 +131,7 @@ class Workouts(models.Model):
     workout_time = models.DecimalField('Время тренировки', max_digits=5, decimal_places=2)
     photo_workout = models.ImageField('Фото тренировки', upload_to='photos/%Y/%m/%d/', null=True, blank=True)
     description = models.TextField('Описание тренировки')
+    is_privet = models.BooleanField('Приватность', choices=BOOL_CHOICES, default=False)
 
     def __str__(self):
         return self.name_workout

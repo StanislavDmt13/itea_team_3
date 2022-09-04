@@ -15,6 +15,7 @@
                         <p>{{i.date_create}}</p>
                         <p><img src="{{i.photo_url}}" style="max-height:200px"></p>
                         <p>{{i.description}}</p>
+                        <p>Is private: {{i.is_privet}}</p>
                         <a href="{% url 'detail_workout' i.pk %}" class="btn btn-warning">Read workout</a>
                     </div>
                 </li>

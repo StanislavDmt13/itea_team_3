@@ -15,7 +15,7 @@ class HomepageView(TemplateView, LoginRequiredMixin):
     template_name = 'profile.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['workout'] = Workouts.objects.filter(user=self.request.user).order_by('-date_create')[:2]
+        kwargs['workout'] = Workouts.objects.filter(user=self.request.user, is_privet=False).order_by('-date_create')[:5]
         kwargs['categories'] = Category.objects.all()
         return super().get_context_data(**kwargs)
 

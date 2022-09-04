@@ -14,6 +14,7 @@
         <p>Distance: {{ workout.distance }}</p>
         <p>Workout time: {{ workout.workout_time }}</p>
         <p>Description: {{ workout.description }}</p>
+        <p>Is private: {{ workout.is_privet }}</p>
         <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'update_workout' workout.id %}" class="btn btn-info">Edit</a>
     </div>
