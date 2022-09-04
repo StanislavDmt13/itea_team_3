@@ -92,3 +92,9 @@ class QuestionAdmin(admin.ModelAdmin):
 
 	list_display = ['question', ]
 
+
+@admin.register(models.Comment)
+class CommentsAdmin(admin.ModelAdmin):
+	pass
+
+
