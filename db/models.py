@@ -151,8 +151,12 @@ class Workouts(models.Model):
 
 class Comment(models.Model):
     workout = models.ForeignKey(Workouts, related_name='comments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.workout.name_workout - self.author.username)
 
 
 class Question(models.Model):

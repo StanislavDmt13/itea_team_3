@@ -17,6 +17,15 @@
                         <p>{{i.description}}</p>
                         <p>Is private: {{i.is_privet}}</p>
                         <a href="{% url 'detail_workout' i.pk %}" class="btn btn-warning">Read workout</a>
+                        <hr>
+                        </br>
+                        <form action="{% url 'detail_workout' i.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="workout_id" value="{{ i.id }}" class="btn-btn-primary btn-sm">
+                                Comments
+                            </button>
+
+                        </form>
                     </div>
                 </li>
                 {% endfor %}
