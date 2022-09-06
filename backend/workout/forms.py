@@ -1,5 +1,5 @@
 from db.models import *
-from django.forms import ModelForm, TextInput, Textarea, NumberInput, Select
+from django.forms import ModelForm, TextInput, Textarea, NumberInput, Select, Form
 
 TRUE_FALSE_CHOICES = (
     (True, 'Private'),
@@ -45,3 +45,10 @@ class WorkoutsForm(ModelForm):
             }),
             'is_privet': Select(choices=TRUE_FALSE_CHOICES)
         }
+
+
+class AddCommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["text"]
+        widgets = {'text': Textarea(attrs={'class': 'form-control'})}

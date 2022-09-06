@@ -132,6 +132,7 @@ class Workouts(models.Model):
     photo_workout = models.ImageField('Фото тренировки', upload_to='photos/%Y/%m/%d/', null=True, blank=True)
     description = models.TextField('Описание тренировки')
     is_privet = models.BooleanField('Приватность', choices=BOOL_CHOICES, default=False)
+    likes = models.ManyToManyField(User, related_name='workout_likes')
 
     def __str__(self):
         return self.name_workout
@@ -144,8 +145,26 @@ class Workouts(models.Model):
     def get_absolute_url(self):
         return f'/workout/{self.id}'
 
+    def total_comments(self):
+        return self.comments.count()
+
     class Meta:
         verbose_name_plural = 'Workouts'
+
+
+class Comment(models.Model):
+    workout = models.ForeignKey(Workouts, related_name='comments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.workout.name_workout, self.author.username)
+
+    def get_absolute_url(self):
+        return f'/workout/{self.workout.id}'
+
+
 
 
 class Question(models.Model):

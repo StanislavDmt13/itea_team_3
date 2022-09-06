@@ -79,7 +79,6 @@ class Migration(migrations.Migration):
                 ('workout_time', models.DecimalField(decimal_places=2, max_digits=5, verbose_name='Время тренировки')),
                 ('photo_workout', models.ImageField(blank=True, null=True, upload_to='photos/%Y/%m/%d/', verbose_name='Фото тренировки')),
                 ('description', models.TextField(verbose_name='Описание тренировки')),
-                ('is_privet', models.BooleanField(choices=[(True, 'Private'), (False, 'Not private')], default=False, verbose_name='Приватность')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
