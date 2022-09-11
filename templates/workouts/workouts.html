@@ -1,12 +1,11 @@
 {% extends 'index.html' %}
-{% load static %}
 
 {% block title %}My workouts{% endblock %}
 
 {% block content %}
     <div class="features">
+        <a href="{% url 'create_workout' %}"><button class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</button></a>
         <center><h3>My workouts</h3></center>
-        <center><p><a href="{% url 'create_workout' %}" class="btn btn-info"><i class="fas fa-plus circle"></i>Add workout</a></p></center>
         <ul>
             {% if workout %}
                 {% for i in workout %}
@@ -14,9 +13,12 @@
                     <div class="alert alert-warning">
                         <h5>{{i.name_workout}}</h5>
                         <p>{{i.date_create}}</p>
-                        <p><img src="{{MEDIA_URL}}{{i.photo_workout.url}}" style="max-height:200px"></p>
+                        <p><img src="{{i.photo_url}}" style="max-height:200px"></p>
                         <p>{{i.description}}</p>
+                        <p>Is private: {{i.is_privet}}</p>
                         <a href="{% url 'detail_workout' i.pk %}" class="btn btn-warning">Read workout</a>
+                        <hr>
+                        <a href="{% url 'detail_workout' i.pk %}" class="btn btn-primary">Comments</a>
                     </div>
                 </li>
                 {% endfor %}
@@ -25,4 +27,24 @@
             {% endif %}
         </ul>
     </div>
+<ul class="pagination justify-content-center">
+    {% for p in paginator.page_range %}
+    {% if paginator.count > 1 %}
+    {% if page_obj.number == p %}
+    <li class="page-item active">
+        <span class="page-link">
+        {{ p }}
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+
+</ul>
 {% endblock %}

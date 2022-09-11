@@ -14,8 +14,55 @@
         <p>Distance: {{ workout.distance }}</p>
         <p>Workout time: {{ workout.workout_time }}</p>
         <p>Description: {{ workout.description }}</p>
+        <p>Is private: {{ workout.is_privet }}</p>
         <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'update_workout' workout.id %}" class="btn btn-info">Edit</a>
+
     </div>
+{% if not total_comments %}
+<h4>No comments yet...<a href="{% url 'add-comment-to-workout' workout.id %}">Add one</a></h4>
+{% else %}
+<section style="background-color: #ad655f;">
+  <div class="container my-5 py-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10">
+        <div class="card text-dark">
+          <div class="card-body p-4">
+            <h4 class="mb-0">Comments - {{ total_comments }}</h4>
+            <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+            {% for comment in workout.comments.all %}
+            <div class="d-flex flex-start">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60"
+                height="60" />
+              <div>
+                  <h6 class="fw-bold mb-1"><strong>{{ comment.author.username }}</strong></h6>
+                <div class="d-flex align-items-center mb-3">
+                  <p class="mb-0">
+                   {{ comment.date_added }}
+
+                  </p>
+                </div>
+
+                <p class="mb-0">
+                    {{ comment.text }}
+                </p>
+                  </br>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+
+          <hr class="my-0" />
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<a href="{% url 'add-comment-to-workout' workout.id %}" class="btn btn-warning"><h4>Add comment</h4></a>
+{% endif %}
+
 {% endblock %}
 

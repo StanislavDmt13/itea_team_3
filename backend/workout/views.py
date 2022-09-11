@@ -1,17 +1,30 @@
-from django.shortcuts import render, redirect
-from db.models import Workouts
-from .forms import WorkoutsForm
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+
+from db.models import *
+from .forms import WorkoutsForm, AddCommentForm
+from django.views.generic import (UpdateView,
+                                  DeleteView,
+                                  ListView,
+                                  CreateView,
+                                  )
 
 
-def my_workout(request):
-    workout = Workouts.objects.filter(user=request.user).order_by('-date_create')
-    return render(request, 'workouts/workouts.html', {'workout': workout})
+class MyWorkout(ListView):
+    paginate_by = 4
+    model = Workouts
+    context_object_name = 'workout'
+    template_name = 'workouts/workouts.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['workout'] = Workouts.objects.filter(user=self.request.user).order_by('-date_create')
+        return super().get_context_data(**kwargs)
 
 
 def detail_workout(request, pk):
     workout = Workouts.objects.get(pk=pk)
-    return render(request, 'workouts/detail_workout.html', {'workout': workout})
+    total_comments = workout.total_comments()
+    return render(request, 'workouts/detail_workout.html', {'workout': workout, 'total_comments': total_comments})
 
 
 class WorkoutUpdatelView(UpdateView):
@@ -30,6 +43,7 @@ def create_workout(request):
     if request.method == 'POST':
         form = WorkoutsForm(request.POST, request.FILES)
         if form.is_valid():
+            print(form)
             new_form = form.save(commit=False)
             new_form.user = request.user
             new_form.save()
@@ -43,3 +57,15 @@ def create_workout(request):
         'img_obj': img_obj
     }
     return render(request, 'workouts/create_workout.html', data)
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddCommentForm
+    template_name = 'workouts/add_comment.html'
+
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.workout_id = self.kwargs['pk']
+        return super().form_valid(form)

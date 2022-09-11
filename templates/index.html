@@ -36,9 +36,9 @@
                     {% endif %}
 
                     <h1 class="font-weight-bold">{{user.username}}</h1>
-                    <p class="mb-4">
+                    <a class="mb-4" href="{% url 'myprofile-about' %}">
                         Something About Me
-                    </p>
+                    </a>
                     <div class="d-flex justify-content-center mb-5">
                         <ul class="fa-ul">
                             <li><i class="fab fa-twitter"></i><a href="#">@{{user.username}}</a></li>
@@ -70,13 +70,14 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav m-auto">
-                                <a href="{% url 'myprofile-homepage' %}" class="nav-item nav-link active">Home</a>
-                                <a href="about.html" class="nav-item nav-link">About</a>
-                                <a href="blog.html" class="nav-item nav-link">Blog Grid</a>
                                 {% if user.is_authenticated %}
+                                <a href="{% url 'myprofile-homepage' %}" class="nav-item nav-link active">Home</a>
+                                <a href="{% url 'workout' %}" class="nav-item nav-link">Workouts</a>
+                                <a href="{% url 'train-train_program' %}" class="nav-item nav-link">Train Program</a>
+                                <a href="blog.html" class="nav-item nav-link">Search</a>
+                                <a href="{% url 'support' %}" class="nav-item nav-link">Support</a>
                                 <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
                                 {% else %}
-
                                 <a href="{% url 'login_user' %}" class="nav-item nav-link">Login</a>
                                 <a href="{% url 'registration' %}" class="nav-item nav-link">Registration</a>
                                 {% endif %}
@@ -92,7 +93,9 @@
 
                 {% endfor %}
                 {% endif%}
-            
+                {% block category %}
+                {% endblock %}
+
                 {% block content %}
 
                 {% endblock %}
@@ -105,10 +108,10 @@
                 <!-- Footer End -->
             </div>
         </div>
-        
+
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
-        
+
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
